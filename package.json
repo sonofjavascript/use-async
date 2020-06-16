@@ -1,0 +1,36 @@
+{
+  "name": "use-actions",
+  "author": "Albert Pérez Farrés",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "useReducer extension to execute http async calls",
+  "main": "lib/index.js",
+  "scripts": {
+    "linter-fix": "standard --fix",
+    "linter-check": "standard",
+    "test": "jest --watchAll ",
+    "build": "babel src -d lib"
+  },
+  "keywords": [
+    "useReducer",
+    "async",
+    "actions",
+    "hooks",
+    "react"
+  ],
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "jest": "^24.9.0",
+    "standard": "^14.3.1"
+  }
+}
