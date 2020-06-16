@@ -1,4 +1,5 @@
 const presets = [
+  '@babel/preset-react',
   [
     '@babel/env',
     {
@@ -9,7 +10,8 @@ const presets = [
         ie: '11'
       }
     }
-  ]
+  ],
+  'minify'
 ]
 
 module.exports = { presets }

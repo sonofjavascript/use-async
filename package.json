@@ -23,13 +23,26 @@
       "jest"
     ]
   },
+  "jest": {
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "./src/**/*.js",
+      "!**/**/index.js",
+      "!**/node_modules/**",
+      "!**/coverage/**"
+    ],
+    "coverageDirectory": "./coverage"
+  },
   "dependencies": {
+    "core-js": "^3.3.1",
     "react": "^16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.10.1",
+    "babel-preset-minify": "^0.5.1",
     "jest": "^24.9.0",
     "standard": "^14.3.1"
   }

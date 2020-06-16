@@ -1,19 +1,7 @@
 import { useCallback, useReducer, useEffect, useContext, useState } from 'react'
 
-import { ClientStore } from '@shared/stores'
-
-import AsyncBus from './asyncBus'
-
-const uuid = () => Math.random().toString(36).substr(2, 9)
-
-const reducer = (id, client, actions) => (state, { type, payload }) => {
-  const action = actions[type]
-
-  const { request, ...effect } = action?.(state, payload) || state
-  if (request) AsyncBus(id, client)({ ...request, type })
-
-  return effect
-}
+import { ClientStore } from './stores'
+import { uuid, reducer } from './utils'
 
 const useActions = (actions, initialState = {}) => {
   const [id] = useState(uuid())
@@ -27,6 +15,9 @@ const useActions = (actions, initialState = {}) => {
       ...client.dispatchs,
       [id]: dispatch
     }
+
+    if (!client.connect) return
+    client.connect({ state })
   }, [state])
 
   return [state, dispatch]

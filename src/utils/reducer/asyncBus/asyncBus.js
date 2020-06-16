@@ -1,9 +1,12 @@
 import { METHODS, DISPATCH_MODES } from './static'
+import { check } from './validator'
 
 const { GET, POST, PUT, DELETE } = METHODS
 const { SUCCESS, ERROR } = DISPATCH_MODES
 
 const AsyncBus = (id, client) => {
+  if (!client) throw new Error('Client agent is not defined')
+
   const methods = {
     [GET]: client.get,
     [POST]: client.post,
@@ -19,7 +22,12 @@ const AsyncBus = (id, client) => {
   }
 
   const execute = ({ method, params, body, url, type }) => {
-    methods[method](url, params, body)
+    const fn = methods[method]
+    check(fn, method)
+
+    console.log(fn)
+
+    fn(url, params, body)
       .then(throwDispatch(type, SUCCESS))
       .catch(throwDispatch(type, ERROR))
   }
