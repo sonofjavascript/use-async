@@ -1,6 +1,6 @@
 import AsyncBus from './asyncBus'
-import { check } from './validator/validator'
 
+import { check } from './validator/validator'
 jest.mock('./validator/validator')
 
 afterEach(() => {
@@ -21,7 +21,7 @@ test('Throw error when client is not defined', () => {
 
 test('Call check method validator', () => {
   const method = 'GET'
-  const client = { get: () => new Promise(resolve => resolve()) }
+  const client = { get: () => Promise.resolve() }
 
   AsyncBus('::id::', client)({ method })
 
@@ -44,7 +44,7 @@ test('Client method should not be executed when is invalid', () => {
 })
 
 test('Client "GET" method is executed', () => {
-  const get = jest.fn(() => new Promise(resolve => resolve()))
+  const get = jest.fn(() => Promise.resolve())
   const url = '::url::'
   const params = '::params::'
 
@@ -59,7 +59,7 @@ test('Client "GET" method is executed', () => {
 })
 
 test('Client "POST" method is executed', () => {
-  const post = jest.fn(() => new Promise(resolve => resolve()))
+  const post = jest.fn(() => Promise.resolve())
   const url = '::url::'
   const params = '::params::'
   const body = '::body::'
@@ -76,7 +76,7 @@ test('Client "POST" method is executed', () => {
 })
 
 test('Client "PUT" method is executed', () => {
-  const put = jest.fn(() => new Promise(resolve => resolve()))
+  const put = jest.fn(() => Promise.resolve())
   const url = '::url::'
   const params = '::params::'
   const body = '::body::'
@@ -93,7 +93,7 @@ test('Client "PUT" method is executed', () => {
 })
 
 test('Client "DELETE" method is executed', () => {
-  const deleteMethod = jest.fn(() => new Promise(resolve => resolve()))
+  const deleteMethod = jest.fn(() => Promise.resolve())
   const url = '::url::'
   const params = '::params::'
   const body = '::body::'
@@ -133,7 +133,7 @@ test('Throw SUCCESS dispatch', async () => {
 test('Throw ERROR dispatch', async () => {
   const id = '::id::'
   const payload = '::payload::'
-  const get = jest.fn(() => new Promise((resolve, reject) => reject(payload)))
+  const get = jest.fn(() => Promise.reject(payload))
   const type = '::type::'
 
   const callbackDispatch = jest.fn(() => {})
@@ -150,46 +150,3 @@ test('Throw ERROR dispatch', async () => {
   expect(callbackDispatch).toHaveBeenCalledTimes(1)
   expect(callbackDispatch).toBeCalledWith({ type: `${type}_ERROR`, payload })
 })
-
-// test('Throw error when "get" client method is not an async method', () => {
-//   const actionType = '::action1::'
-//   const method = 'GET'
-//   const actions = {
-//     [actionType]: () => ({
-//       request: {
-//         method,
-//         url: '::url::'
-//       }
-//     })
-//   }
-
-//   const client = {
-//     get: () => {}
-//   }
-
-//   expect(() => {
-//     reducer('::id::', actions, client)(null, { type: actionType })
-//   }).toThrowError(new Error(`The method '${method}' is not an async function in the client agent`))
-// })
-
-// test('Execute "get" client method', () => {
-//   const actionType = '::action1::'
-//   const method = 'GET'
-//   const actions = {
-//     [actionType]: () => ({
-//       request: {
-//         method,
-//         url: '::url::'
-//       }
-//     })
-//   }
-
-//   const client = {
-//     get: () => new Promise(resolve => resolve())
-//   }
-
-//   const execute = spyOn(AsyncBus, 'default')
-
-//   reducer('::id::', actions, client)(null, { type: actionType })
-//   expect(execute).toHaveBeenCalledTimes(1)
-// })
