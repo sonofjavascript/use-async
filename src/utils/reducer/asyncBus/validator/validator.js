@@ -6,7 +6,8 @@ export const checkFn = (fn, method) => {
   if (!fn) {
     throw new Error(errorPattern(method, 'does not exist'))
   }
-  if (fn.constructor.name === 'AsyncFunction') return
+
+  if (fn() instanceof Promise) return
 
   throw new Error(errorPattern(method, 'is not an async function'))
 }

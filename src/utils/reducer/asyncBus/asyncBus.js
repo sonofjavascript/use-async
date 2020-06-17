@@ -5,6 +5,7 @@ const { GET, POST, PUT, DELETE } = METHODS
 const { SUCCESS, ERROR } = DISPATCH_MODES
 
 const AsyncBus = (id, client) => {
+  if (!id) throw new Error('Unique ID identifier is not defined')
   if (!client) throw new Error('Client agent is not defined')
 
   const methods = {
@@ -15,9 +16,10 @@ const AsyncBus = (id, client) => {
   }
 
   const throwDispatch = (actionType, mode) => (payload) => {
-    const dispatch = client.dispatchs[id]
-    const type = `${actionType}_${mode}`
+    const dispatch = client.dispatchs?.[id]
+    if (!dispatch) return
 
+    const type = `${actionType}_${mode}`
     dispatch({ type, payload })
   }
 
@@ -25,9 +27,7 @@ const AsyncBus = (id, client) => {
     const fn = methods[method]
     check(fn, method)
 
-    console.log(fn)
-
-    fn(url, params, body)
+    return fn(url, params, body)
       .then(throwDispatch(type, SUCCESS))
       .catch(throwDispatch(type, ERROR))
   }

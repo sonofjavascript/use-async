@@ -1,8 +1,10 @@
 import reducer from './reducer'
 
-import * as AsyncBus from './asyncBus/asyncBus'
+import AsyncBus from './asyncBus/asyncBus'
 
-test('Should return state when action type is not found', () => {
+jest.mock('./asyncBus/asyncBus', () => jest.fn(() => {}).mockReturnValue(jest.fn(() => {})))
+
+test('Return state when action type is not found', () => {
   const actionCallback = jest.fn(() => {})
   const actions = { '::action1::': actionCallback }
   const state = { data: '::data::' }
@@ -13,7 +15,7 @@ test('Should return state when action type is not found', () => {
   expect(actionCallback).not.toHaveBeenCalled()
 })
 
-test('Should call action and return its effect', () => {
+test('Call action and return its effect', () => {
   const actionType = '::action1::'
   const actionCallback = jest.fn((state, payload) => ({
     ...state,
@@ -30,76 +32,24 @@ test('Should call action and return its effect', () => {
   expect(actionCallback).toBeCalledWith(state, payload)
 })
 
-test('When action effect has request and client is not defined should throw error', () => {
-  const actionType = '::action1::'
-  const actions = {
-    [actionType]: () => ({
-      request: {
-        method: '::method::',
-        url: '::url::'
-      }
-    })
-  }
-
-  expect(() => {
-    reducer('::id::', actions)(null, { type: actionType })
-  }).toThrowError(new Error('Client agent is not defined'))
-})
-
-test('When action effect has request and method is unknown should throw error', () => {
-  const actionType = '::action1::'
+test('Execute "AsyncBus" when request is on action effect', () => {
+  const id = '::id::'
   const method = '::method::'
-  const actions = {
-    [actionType]: () => ({
-      request: {
-        method,
-        url: '::url::'
-      }
-    })
-  }
-
-  expect(() => {
-    reducer('::id::', actions, {})(null, { type: actionType })
-  }).toThrowError(new Error(`Method '${method}' is not allowed`))
-})
-
-test('When action effect has request and client method is not an async method should throw error', () => {
+  const url = '::url::'
   const actionType = '::action1::'
-  const method = 'GET'
+  const client = '::client::'
   const actions = {
     [actionType]: () => ({
       request: {
         method,
-        url: '::url::'
+        url
       }
     })
   }
 
-  const client = {
-    [method.toLowerCase()]: () => {}
-  }
-
-  expect(() => {
-    reducer('::id::', actions, client)(null, { type: actionType })
-  }).toThrowError(new Error(`The method '${method}' is not an async function in the client agent`))
+  reducer(id, actions, client)(null, { type: actionType })
+  expect(AsyncBus).toHaveBeenCalledTimes(1)
+  expect(AsyncBus).toBeCalledWith(id, client)
+  expect(AsyncBus(id, client)).toHaveBeenCalledTimes(1)
+  expect(AsyncBus(id, client)).toBeCalledWith({ method, url, type: actionType })
 })
-
-// test('When action effect has request and client is not defined should throw error', () => {
-//   const id = '::id::'
-//   const actionType = '::action1::'
-//   const actions = {
-//     [actionType]: () => ({
-//       request: {
-//         method: '::method::',
-//         url: '::url::'
-//       }
-//     })
-//   }
-
-//   const execute = spyOn(AsyncBus, 'default')
-//   const action = { type: actionType }
-
-//   expect(() => {
-//     reducer(id, actions)(null, action)
-//   }).toThrowError(new Error(`Client agent is not defined`))
-// })
