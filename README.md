@@ -32,7 +32,7 @@ const actions = {
 Note: *reducers are commonly defined through switch statements. Author's preference is to use always objects instead of those.*
 
 
-The `request` key in the `ASYNC_ACTION` type indicates this action is asynchronous. In this example, the client agent will execute a `get` http call to the url `/api/data`. Optionally, to manage the state when the request has been successfully executed add an action with the same type followed by `_SUCCESS`; and to manage the state when the request has failed add an action with the same type followed by `_ERROR`. [See Actions, Dispatches and State](#actions-dispatches-state).
+The `request` key in the `ASYNC_ACTION` type indicates this action is asynchronous. In this example, the client agent will execute a `get` http call to the url `/api/data`. Optionally, to manage the state when the request has been successfully executed add an action with the same type followed by `_SUCCESS`; and to manage the state when the request has failed add an action with the same type followed by `_ERROR`. [See Actions, Dispatches and State](#actions-dispatches-and-state).
 
 Then, you only have to pass this actions objet to the `useAsync` hook. 
 
