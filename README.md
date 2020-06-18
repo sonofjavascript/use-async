@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/@sonofjs/use-actions.svg) [![Build Status](https://travis-ci.com/sonofjavascript/use-actions.svg?branch=master)](https://travis-ci.com/sonofjavascript/use-actions) [![Coverage Status](https://coveralls.io/repos/github/sonofjavascript/use-actions/badge.svg)](https://coveralls.io/github/sonofjavascript/use-actions) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+![npm](https://img.shields.io/npm/v/@sonofjs/use-async.svg) [![Build Status](https://travis-ci.com/sonofjavascript/use-async.svg?branch=master)](https://travis-ci.com/sonofjavascript/use-async) [![Coverage Status](https://coveralls.io/repos/github/sonofjavascript/use-async/badge.svg)](https://coveralls.io/github/sonofjavascript/use-async) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 # useAsync
 <img src='https://onix-systems.com/uploads/eYdjjAuPgNzIPbGGJtMORLRQ9kYyQeKo.jpg' />
@@ -32,7 +32,7 @@ const actions = {
 Note: *reducers are commonly defined through switch statements. Author's preference is to use always objects instead of those.*
 
 
-The `request` key in the `ASYNC_ACTION` type indicates this action is asynchronous. In this example, the client agent will execute a `get` http call to the url `/api/data`. Optionally, to manage the state when the request has been successfully executed add an action with the same type followed by `_SUCCESS`; and to manage the state when the request has failed add an action with the same type followed by `_ERROR`. [See Actions, Dispatches and State](#actions-dispatches-state).
+The `request` key in the `ASYNC_ACTION` type indicates this action is asynchronous. In this example, the client agent will execute a `get` http call to the url `/api/data`. Optionally, to manage the state when the request has been successfully executed add an action with the same type followed by `_SUCCESS`; and to manage the state when the request has failed add an action with the same type followed by `_ERROR`. [See Actions, Dispatches and State](#actions-dispatches-and-state).
 
 Then, you only have to pass this actions objet to the `useAsync` hook. 
 
