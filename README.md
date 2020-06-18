@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/@sonofjs/use-actions.svg) [![Build Status](https://travis-ci.com/sonofjavascript/use-actions.svg?branch=master)](https://travis-ci.com/sonofjavascript/use-actions) [![Coverage Status](https://coveralls.io/repos/github/sonofjavascript/use-actions/badge.svg)](https://coveralls.io/github/sonofjavascript/use-actions) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+![npm](https://img.shields.io/npm/v/@sonofjs/use-async.svg) [![Build Status](https://travis-ci.com/sonofjavascript/use-async.svg?branch=master)](https://travis-ci.com/sonofjavascript/use-async) [![Coverage Status](https://coveralls.io/repos/github/sonofjavascript/use-async/badge.svg)](https://coveralls.io/github/sonofjavascript/use-async) [![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 # useAsync
 <img src='https://onix-systems.com/uploads/eYdjjAuPgNzIPbGGJtMORLRQ9kYyQeKo.jpg' />
