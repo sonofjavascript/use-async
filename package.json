@@ -1,15 +1,23 @@
 {
-  "name": "use-actions",
+  "name": "@sonofjs/use-actions",
   "author": "Albert Pérez Farrés",
-  "license": "ISC",
   "version": "1.0.0",
   "description": "useReducer extension to execute http async calls",
   "main": "lib/index.js",
   "scripts": {
+    "build": "BABEL_ENV=production babel src -d lib",
+    "test:dev": "jest --watchAll",
+    "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "linter-fix": "standard --fix",
-    "linter-check": "standard",
-    "test": "jest --watchAll ",
-    "build": "babel src -d lib"
+    "linter-check": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sonofjavascript/use-actions.git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "useReducer",
@@ -35,19 +43,20 @@
     "coverageDirectory": "./coverage"
   },
   "dependencies": {
-    "core-js": "^3.3.1",
+    "core-js": "^3.6.5",
     "react": "^16.13.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@testing-library/jest-dom": "^5.10.1",
-    "@testing-library/react": "^10.2.1",
+    "@testing-library/react": "^10.3.0",
     "babel-preset-minify": "^0.5.1",
-    "jest": "^24.9.0",
+    "coveralls": "^3.1.0",
+    "jest": "^26.0.1",
     "react-dom": "^16.13.1",
-    "standard": "^14.3.1"
+    "standard": "^14.3.4"
   }
 }

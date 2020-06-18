@@ -10,8 +10,20 @@ const presets = [
         ie: '11'
       }
     }
-  ],
-  'minify'
+  ]
 ]
 
-module.exports = { presets }
+const env = {
+  production: {
+    presets: ['minify'],
+    ignore: [
+      'src/**/*.spec.js',
+      '**/*.spec.js',
+      '**/*.spec.jsx',
+      '**.spec.js',
+      '**.spec.jsx'
+    ]
+  }
+}
+
+module.exports = { presets, env }

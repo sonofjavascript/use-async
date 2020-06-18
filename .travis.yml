@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - 10
+
+jobs:
+  include:
+    - stage: Build and test
+      script:
+        - npm run linter-check
+        - npm run test
+    - stage: Release npm package
+      script: npm run build
+      deploy:
+        edge: true
+        provider: npm
+        email: '$NPM_EMAIL'
+        api_key: '$NPM_TOKEN'
+        skip_cleanup: true
+        on:
+          tags: true
+
+branches:
+  only:
+    - master
+    - /^v[0-9]+.*$/
+  

@@ -6,6 +6,7 @@ import { uuid, reducer } from './utils'
 const useActions = (actions, initialState = {}) => {
   const [id] = useState(uuid())
   const client = useContext(ClientStore.Context)
+  
   const memoizedReducer = useCallback(reducer(id, actions, client), [])
   const [state, dispatch] = useReducer(memoizedReducer, initialState)
 
