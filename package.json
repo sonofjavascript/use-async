@@ -1,8 +1,8 @@
 {
-  "name": "@sonofjs/use-actions",
+  "name": "@sonofjs/use-async",
   "author": "Albert Pérez Farrés",
   "version": "1.0.0",
-  "description": "useReducer extension to execute http async calls",
+  "description": "*useReducer* hook's extension to manage asynchronous actions over application's state through http requests.",
   "main": "lib/index.js",
   "scripts": {
     "build": "BABEL_ENV=production babel src -d lib",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sonofjavascript/use-actions.git"
+    "url": "https://github.com/sonofjavascript/use-async.git"
   },
   "license": "MIT",
   "publishConfig": {
@@ -22,9 +22,13 @@
   "keywords": [
     "useReducer",
     "async",
+    "http",
     "actions",
     "hooks",
-    "react"
+    "react",
+    "axios",
+    "fetch",
+    "asynchronous"
   ],
   "standard": {
     "env": [

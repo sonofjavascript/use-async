@@ -2,7 +2,7 @@ import React from 'react'
 
 import { render } from '@testing-library/react'
 
-import useActions from './useActions'
+import useAsync from './useAsync'
 
 import uuid from './utils/uuid/uuid'
 import reducer from './utils/reducer/reducer'
@@ -18,7 +18,7 @@ jest.mock('./utils/uuid/uuid', () => jest.fn(() => mockUUID))
 jest.mock('./utils/reducer/reducer', () => jest.fn(() => {}).mockReturnValue(jest.fn(() => {})))
 
 const TestComponent = ({ actions, initialState }) => {
-  useActions(actions, initialState)
+  useAsync(actions, initialState)
   return <div />
 }
 

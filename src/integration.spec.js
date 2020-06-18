@@ -3,7 +3,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, fireEvent } from '@testing-library/react'
 
-import useActions from './useActions'
+import useAsync from './useAsync'
 
 import * as ClientStore from './stores/ClientStore/ClientStore'
 
@@ -16,7 +16,7 @@ const actions = { [action]: dispatch }
 const agent = {}
 
 const TestComponent = () => {
-  const [state, dispatch] = useActions(actions, initialState)
+  const [state, dispatch] = useAsync(actions, initialState)
 
   const onDispatch = () => dispatch({ type: action, payload })
 

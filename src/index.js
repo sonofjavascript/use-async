@@ -1,5 +1,5 @@
-import useActions from './useActions'
+import useAsync from './useAsync'
 import { ClientStore } from './stores'
 
 export { ClientStore }
-export default useActions
+export default useAsync
