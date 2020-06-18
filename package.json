@@ -27,6 +27,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**/*.js",
+      "./src/**/*.jsx",
       "!**/**/index.js",
       "!**/node_modules/**",
       "!**/coverage/**"
@@ -42,8 +43,11 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.10.1",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.2.1",
     "babel-preset-minify": "^0.5.1",
     "jest": "^24.9.0",
+    "react-dom": "^16.13.1",
     "standard": "^14.3.1"
   }
 }

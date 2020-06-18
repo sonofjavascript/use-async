@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const Context = React.createContext([{}, () => {}])
+export const initial = () => {}
+export const Context = React.createContext([{}, initial])
 
 export const Provider = ({ agent, children }) => (
   <Context.Provider value={agent}>
