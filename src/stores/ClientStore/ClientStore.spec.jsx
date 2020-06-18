@@ -18,12 +18,11 @@ test('Initial context', () => {
 
 test('Value of the provider should be the agent prop', () => {
   const agent = '::agent::'
-  const tree = (
-    <ClientStore.Provider {...{agent}}>
+  const { getByText } = render((
+    <ClientStore.Provider {...{ agent }}>
       <TestComponent />
     </ClientStore.Provider>
-  )
+  ))
 
-  const { getByText } = render(tree)
   expect(getByText(/^Agent:/)).toHaveTextContent(`Agent: ${agent}`)
 })
