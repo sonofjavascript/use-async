@@ -39,7 +39,6 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**/*.js",
-      "./src/**/*.jsx",
       "!**/**/index.js",
       "!**/node_modules/**",
       "!**/coverage/**"

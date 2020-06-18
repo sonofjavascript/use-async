@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import '@testing-library/jest-dom'
 import { render } from '@testing-library/react'
 
-import * as ClientStore from './ClientStore.jsx'
+import * as ClientStore from './ClientStore'
 
 const TestComponent = () => {
   const agent = useContext(ClientStore.Context)

@@ -19,9 +19,7 @@ const env = {
     ignore: [
       'src/**/*.spec.js',
       '**/*.spec.js',
-      '**/*.spec.jsx',
-      '**.spec.js',
-      '**.spec.jsx'
+      '**.spec.js'
     ]
   }
 }

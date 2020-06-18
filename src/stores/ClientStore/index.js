@@ -1,3 +1,3 @@
-import * as ClientStore from './ClientStore.jsx'
+import * as ClientStore from './ClientStore'
 
 export default ClientStore
