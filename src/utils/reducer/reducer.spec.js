@@ -47,9 +47,25 @@ test('Execute "AsyncBus" when request is on action effect', () => {
     })
   }
 
-  reducer(id, actions, client)(null, { type: actionType })
+  const result = reducer(id, actions, client)(null, { type: actionType })
   expect(AsyncBus).toHaveBeenCalledTimes(1)
   expect(AsyncBus).toBeCalledWith(id, client)
   expect(AsyncBus(id, client)).toHaveBeenCalledTimes(1)
   expect(AsyncBus(id, client)).toBeCalledWith({ method, url, type: actionType })
+  expect(result.request).toBeUndefined()
+})
+
+test('\'request\' key should be removed from effect after AsyncBus call', () => {
+  const actionType = '::action1::'
+  const actions = {
+    [actionType]: () => ({
+      request: {
+        method: '::method::',
+        url: '::url::'
+      }
+    })
+  }
+
+  const { request } = reducer('::id::', actions, '::client::')(null, { type: actionType })
+  expect(request).toBeUndefined()
 })
