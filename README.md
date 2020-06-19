@@ -61,7 +61,7 @@ Specify the client agent through the `ClientStore`.
 ```
 import React from 'react'
 
-import { ClientStore } from 'use-async'
+import { ClientStore } from '@sonofjs/use-async'
 import axios from 'axios'
 
 import Component from './Component.jsx'
