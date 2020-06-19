@@ -79,7 +79,7 @@ export default ViewContainer
 Define the state actions and use the `useAsync` hook to manage it.
 
 ```
-import React, { useEffect }  from 'react'
+import React, { useEffect } from 'react'
 import useAsync from '@sonofjs/use-async'
 
 const actions = {
@@ -110,17 +110,17 @@ const initialState = {
 
 const Component = () => {
   const [state, dispatch] = useAsync(actions, initialState)
-    
+
   useEffect(() => {
     dispatch({ type: 'DATA' })
   }, [])
-    
+
   return (
     <>
       {state.loading ? <span>Loading...</span> : null}
       {<span>{JSON.stringify(state.data)}</span>}
       {state.error ? <span>Error: {JSON.stringify(state.error)}</span> : null}
-    <>
+    </>
   )
 }
 
