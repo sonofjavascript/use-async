@@ -50,10 +50,17 @@ npm install --save @sonofjs/use-async
 ## Usage
 This is a very simple example showing how to use the `useAsync` hook.
 * `axios` is used as client agent
-* Action types:
-    *  `GET_DATA`: dispatched on the `useEffect`hook of `Component`. It has a `request` key in the output of the action, which indicates the client agent that should make an http request.
-    *  `GET_DATA_SUCCESS`: will be dispatched if the http call throwed through the `GET_DATA` action has been successfully executed.
-    *  `GET_DATA_ERROR`: will be dispatched if the http call throwed through the `GET_DATA` action has failed.
+* Example action types:
+    *  `FETCH_DATA`: dispatched on the `useEffect`hook of `Component`. It has a `request` key in the output of the action, which indicates the client agent that should make an http request.
+    *  `FETCH_DATA_SUCCESS`: will be dispatched if the http call throwed through the `FETCH_DATA` action has been successfully executed.
+    *  `FETCH_DATA_ERROR`: will be dispatched if the http call throwed through the `FETCH_DATA` action has failed.
+    *  `CREATE`: dispatched on the button click event. Will throw an http POST request.
+    *  `CREATE_SUCCESS`: will be dispatched if the http call throwed through the `CREATE` action has been successfully executed.
+    *  `CREATE`: will be dispatched if the http call throwed through the `CREATE` action has failed.
+    *  `UPDATE`: will throw an http PUT request.
+    *  `DELETE`: will throw an http DELETE request.
+
+Note: *the `*_SUCCESS` and `*_ERROR` actions are optionals.*
 
 ### Client store
 Specify the client agent through the `ClientStore`.
@@ -100,6 +107,38 @@ const actions = {
     ...state,
     loading: false,
     error
+  }),
+  CREATE: (state, payload) => ({
+    ...state,
+    request: {
+      method: 'POST',
+      url: '/api/data',
+      body: payload
+    }
+  }),
+  CREATE_SUCCESS: (state, response) => ({
+    ...state,
+    data: response
+  }),
+  CREATE_ERROR: (state, error) => ({
+    ...state,
+    error
+  }),
+  UPDATE: (state, payload) => ({
+    ...state,
+    request: {
+      method: 'PUT',
+      url: '/api/data',
+      body: payload
+    }
+  }),
+  DELETE: (state, payload) => ({
+    ...state,
+    request: {
+      method: 'DELETE',
+      url: '/api/data',
+      body: payload
+    }
   })
 }
 
@@ -112,14 +151,17 @@ const Component = () => {
   const [state, dispatch] = useAsync(actions, initialState)
 
   useEffect(() => {
-    dispatch({ type: 'DATA' })
+    dispatch({ type: 'FETCH_DATA' })
   }, [])
+
+  const create = () => dispatch({ type: 'CREATE', payload: { name: '::name::' } })
 
   return (
     <>
       {state.loading ? <span>Loading...</span> : null}
       {<span>{JSON.stringify(state.data)}</span>}
       {state.error ? <span>Error: {JSON.stringify(state.error)}</span> : null}
+      <button onClick={create}>Create</button>
     </>
   )
 }
@@ -187,6 +229,3 @@ Albert Pérez Farrés
 
 ## License
  - **MIT** : http://opensource.org/licenses/MIT
- 
-
-
