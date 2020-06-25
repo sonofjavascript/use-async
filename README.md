@@ -12,7 +12,7 @@
 Specify an http client with *get*, *post*, *put* and *delete* methods through the *ClientStore*. You can use *axios*, *fetch* or any other http client. [See Client Store](#client-store).
 
 Define an actions object with this pattern for the common actions:
-```
+```js
 const actions = {
   ...
   ACTION_TYPE: (state, payload) => ({
@@ -36,7 +36,7 @@ The `request` key in the `ASYNC_ACTION` type indicates this action is asynchrono
 
 Then, you only have to pass this actions objet to the `useAsync` hook. 
 
-```
+```js
 const [state, dispatch] = useAsync(actions, initialState)
 ```
 
@@ -65,7 +65,7 @@ Note: *the `*_SUCCESS` and `*_ERROR` actions are optionals.*
 ### Client store
 Specify the client agent through the `ClientStore`.
 
-```
+```js
 import React from 'react'
 
 import { ClientStore } from '@sonofjs/use-async'
@@ -85,7 +85,7 @@ export default ViewContainer
 ### Actions, dispatches and state
 Define the state actions and use the `useAsync` hook to manage it.
 
-```
+```js
 import React, { useEffect } from 'react'
 import useAsync from '@sonofjs/use-async'
 
@@ -172,7 +172,7 @@ export default Component
 ### Custom client agent
 Interceptors and other methods can be used meanwhile the client agent is used by the `asyncAction` hook. To connect the client to the store and use its state data implement a method named `connect` in your client.
 
-```
+```js
 /* Your client agent */
 import axios from 'axios'
 
