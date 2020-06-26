@@ -27,7 +27,7 @@ const AsyncBus = (id, client) => {
     const fn = methods[method]
     check(fn, method)
 
-    return fn(url, params, body)
+    return fn(url, body || params, params)
       .then(throwDispatch(type, SUCCESS))
       .catch(throwDispatch(type, ERROR))
   }

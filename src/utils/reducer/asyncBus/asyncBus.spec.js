@@ -55,7 +55,7 @@ test('Client "GET" method is executed', () => {
   })
 
   expect(get).toHaveBeenCalledTimes(1)
-  expect(get).toBeCalledWith(url, params, undefined)
+  expect(get).toBeCalledWith(url, params, params)
 })
 
 test('Client "POST" method is executed', () => {
@@ -72,7 +72,7 @@ test('Client "POST" method is executed', () => {
   })
 
   expect(post).toHaveBeenCalledTimes(1)
-  expect(post).toBeCalledWith(url, params, body)
+  expect(post).toBeCalledWith(url, body, params)
 })
 
 test('Client "PUT" method is executed', () => {
@@ -89,7 +89,7 @@ test('Client "PUT" method is executed', () => {
   })
 
   expect(put).toHaveBeenCalledTimes(1)
-  expect(put).toBeCalledWith(url, params, body)
+  expect(put).toBeCalledWith(url, body, params)
 })
 
 test('Client "DELETE" method is executed', () => {
@@ -106,7 +106,7 @@ test('Client "DELETE" method is executed', () => {
   })
 
   expect(deleteMethod).toHaveBeenCalledTimes(1)
-  expect(deleteMethod).toBeCalledWith(url, params, body)
+  expect(deleteMethod).toBeCalledWith(url, body, params)
 })
 
 test('Throw SUCCESS dispatch', async () => {

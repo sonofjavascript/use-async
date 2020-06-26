@@ -17,7 +17,7 @@ const useAsync = (actions, initialState = {}) => {
     }
 
     if (!client.connect) return
-    client.connect({ state })
+    client.connect({ state, dispatch })
   }, [state])
 
   return [state, dispatch]
