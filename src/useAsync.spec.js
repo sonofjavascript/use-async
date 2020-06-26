@@ -13,12 +13,13 @@ const initialState = '::initialState::'
 
 const actions = { ACTION: () => {} }
 const agent = { connect: jest.fn() }
+let dispatch
 
 jest.mock('./utils/uuid/uuid', () => jest.fn(() => mockUUID))
 jest.mock('./utils/reducer/reducer', () => jest.fn(() => {}).mockReturnValue(jest.fn(() => {})))
 
 const TestComponent = ({ actions, initialState }) => {
-  useAsync(actions, initialState)
+  [, dispatch] = useAsync(actions, initialState)
   return <div />
 }
 
@@ -48,13 +49,13 @@ test('Should use reducer', () => {
 test('Should use client connect', () => {
   render(<TestGlobal {...{ actions, initialState }} />)
   expect(agent.connect).toBeCalledTimes(1)
-  expect(agent.connect).toBeCalledWith({ state: initialState })
+  expect(agent.connect).toBeCalledWith({ state: initialState, dispatch })
 })
 
 test('Should use client with empty state', () => {
   render(<TestGlobal {...{ actions }} />)
   expect(agent.connect).toBeCalledTimes(1)
-  expect(agent.connect).toBeCalledWith({ state: {} })
+  expect(agent.connect).toBeCalledWith({ state: {}, dispatch })
 })
 
 test('Should keep dispatchs', () => {
