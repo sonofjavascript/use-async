@@ -1,7 +1,7 @@
 {
   "name": "@sonofjs/use-async",
   "author": "Albert Pérez Farrés",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "*useReducer* hook's extension to manage asynchronous actions over application's state through http requests.",
   "main": "lib/index.js",
   "scripts": {
