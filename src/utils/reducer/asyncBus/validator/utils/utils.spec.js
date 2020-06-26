@@ -29,12 +29,6 @@ test('checkFn - Throw error when fn is not defined', () => {
   }).toThrowError(new Error('The method \'undefined\' does not exist in the client agent'))
 })
 
-test('checkFn - Throw error when fn is not an async method', () => {
-  expect(() => {
-    checkFn(() => {}, '::method::')
-  }).toThrowError(new Error('The method \'::method::\' is not an async function in the client agent'))
-})
-
 test('checkFn - Return undefined when fn is valid', () => {
   const result = checkFn(() => Promise.resolve(), '::method::')
   expect(result).not.toBeDefined()
