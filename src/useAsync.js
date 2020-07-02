@@ -20,7 +20,7 @@ const useAsync = (actions, initialState = {}) => {
     client.connect({ state, dispatch })
 
     return () => {
-      client.dispatchs = null
+      client.dispatchs[id] = null
     }
   }, [state])
 
